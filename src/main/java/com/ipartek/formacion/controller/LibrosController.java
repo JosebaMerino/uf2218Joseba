@@ -28,26 +28,8 @@ public class LibrosController extends HttpServlet {
 
 	private static ArrayLibroDAO dao = ArrayLibroDAO.getInstance();
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LibrosController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-    	// TODO Auto-generated method stub
-    	super.init(config);
-    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		LOG.trace("DOGET");
 
 		request.setAttribute("libros", dao.getAll());
@@ -60,6 +42,7 @@ public class LibrosController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LOG.trace("DOPOST");
 
+		// Declara e inicializa el ArrayList que contendrá todos los mensajes de error.
 		ArrayList<String> mensajes = new ArrayList<String>();
 		boolean valido = true;
 
@@ -120,17 +103,28 @@ public class LibrosController extends HttpServlet {
 			// Guardar libro
 			try {
 				dao.create(libro);
+				// Pasar atributos
+				request.setAttribute("libros", dao.getAll());
+				request.setAttribute("alerta", new Alerta(Alerta.TIPO_SUCCESS, "Añadido correctamente", "El libro \""+ libro.getNombre() +"\" se ha añadido correctamente al DAO"));
+
+				//Ir a la vista
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			} catch (Exception e) {
+				// Si falla al agregar libro
+
 				LOG.warn("No se ha podido guardar el libro correctamente");
+				mensajes.add("No se ha podido guardar correctamente. Si el problema persiste, acuda al administrador del sistema.");
+				request.setAttribute("mensajes", mensajes);
+
+				request.setAttribute("nombre", pNombre);
+				request.setAttribute("precio", pPrecio);
+				request.setAttribute("descuento", pDescuento);
+
+				request.getRequestDispatcher("formulario.jsp").forward(request, response);
 			}
 
-			// Pasar atributos
-//			request.setAttribute("libros", dao.getAll());
-//
-//			//Ir a la vista
-//			request.getRequestDispatcher("index.jsp").forward(request, response);
-			response.sendRedirect("libros");
 		} else {
+			// Como no ha pasado la validación vuelve al formulario y no pierde el contenido del formulario.
 			request.setAttribute("mensajes", mensajes);
 
 			request.setAttribute("nombre", pNombre);

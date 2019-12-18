@@ -1,3 +1,5 @@
+<% request.setCharacterEncoding("UTF-8"); %>
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!-- Tag lib imports -->
@@ -9,7 +11,8 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="utf-8">
+    <!--meta charset="utf-8">  -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -34,3 +37,12 @@
    <a href="formulario.jsp"> Formulario</a>
    </nav>
     <main class="container">
+   <c:if test="${not empty alerta }">
+	   <div class="alert alert-${alerta.tipo } alert-dismissible fade show">
+	   		<h4 class="alet-header">${alerta.titulo }</h4>
+	   		<p> ${alerta.descripcion }</p>
+		   	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    	<span aria-hidden="true">&times;</span>
+		  	</button>
+	   </div>
+   </c:if>

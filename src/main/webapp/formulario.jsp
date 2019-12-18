@@ -1,9 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ include file="includes/header.jsp" %>
 
-<h1> Añadir un nuevo libro </h1>
+<h1> AÃ±adir un nuevo libro </h1>
 
 <c:if test="${not empty mensajes }">
 	<div class="alert alert-warning alert-dismissible fade show">
+	<h4 class="alert-heading"> No se ha podido aÃ±adir el libro</h4>
 		<c:forEach items="${mensajes }" var="mensaje">
 			<p> ${mensaje }</p>
 		</c:forEach>
@@ -31,7 +34,7 @@
 					class="form-control"
 					placeholder="2000,00"
 				/>
-		    <small id="precioHelp" class="form-text text-muted">Debe ser un número decimal mayor que 0.</small>
+		    <small id="precioHelp" class="form-text text-muted">Debe ser un nÃºmero decimal mayor que 0.</small>
 	  </div>
 	  <div class="form-group">
 		    <label for="descuento">Descuento</label>
@@ -41,7 +44,7 @@
 					class="form-control"
 					placeholder="49"
 				/>
-		    <small id="descuentoHelp" class="form-text text-muted">Debe ser un número positivo menor o igual a 100</small>
+		    <small id="descuentoHelp" class="form-text text-muted">Debe ser un nÃºmero positivo menor o igual a 100</small>
 	  </div>
 
 
