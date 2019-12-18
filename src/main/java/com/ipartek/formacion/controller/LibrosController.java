@@ -64,13 +64,25 @@ public class LibrosController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LOG.trace("DOPOST");
 		// Recoger parametros
-		String id = request.getParameter("id");
-		String nombre = request.getParameter("nombre");
+		String pId = request.getParameter("id");
+		String pNombre = request.getParameter("nombre");
+
+		int id = Integer.parseInt(pId);
+
+		// Crear libro a guardar
+		Libro libro = new Libro();
+		libro.setId(id);
+		libro.setNombre(pNombre);
+
+		// Guardar libro
+		try {
+			dao.create(libro);
+		} catch (Exception e) {
+			LOG.warn("No se ha podido guardar el libro correctamente");
+		}
 
 		// Pasar atributos
-		request.setAttribute("id", id);
-		request.setAttribute("nombre", nombre);
-
+		request.setAttribute("libros", dao.getAll());
 
 		//Ir a la vista
 		request.getRequestDispatcher("index.jsp").forward(request, response);
