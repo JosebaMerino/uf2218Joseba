@@ -3,25 +3,44 @@
 <h1> Index.jsp </h1>
 
 <a href="libros"> Cargar un texto</a>
-<p>
-Aqui deberian venir uvarios libros: <br />
 
-<c:forEach items="${libros }" var="libro">
-------------------------------- <br />
-${libro.id } <br />
-${libro.nombre } <br />
-${libro.precio } <br />
-${libro.descuento } <br />
-------------------------------- <br />
-</c:forEach>
-</p>
+<c:if test="${empty libros }">
+	<p>Ningún libro almacenado hasta el momento, puedes agragar uno desde <a href="formulario.jsp">aquí</a></p>
+</c:if>
+<c:if test="${not empty libros}">
+	<table class="table table-striped table-bordered">
+		<thead>
+			<th>ID</th>
+			<th>NOMBRE</th>
+			<th>PRECIO</th>
+			<th>DESCUENTO</th>
+		</thead>
+		<tfoot>
+			<th>ID</th>
+			<th>NOMBRE</th>
+			<th>PRECIO</th>
+			<th>DESCUENTO</th>
+		</tfoot>
+		<tbody>
+	<c:forEach items="${libros }" var="libro">
+	<tr>
+		<td>
+			${libro.id }
+		</td>
+		<td>
+			${libro.nombre }
+		</td>
+		<td>
+			${libro.precio }
+		</td>
+		<td>
+			${libro.descuento}
+		</td>
+	</tr>
+	</c:forEach>
+	</tbody>
 
-<p>
-ID: ${id }
-</p>
-<p>
-Nombre: ${nombre }
-</p>
-
+	</table>
+</c:if>
 
 <%@ include 	file="includes/footer.jsp" %>

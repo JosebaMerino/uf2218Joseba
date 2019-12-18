@@ -44,12 +44,6 @@ public class LibrosController extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
     	// TODO Auto-generated method stub
     	super.init(config);
-    	try {
-			dao.create(new Libro(1, "Los juegos de la sed", 20.0f, 1));
-			dao.create(new Libro(2, "Los juegos de la sed sin ajo", 22.0f, 1));
-		} catch (Exception e) {
-			LOG.warn("No se ha podido añadir el libro correctamente");
-		}
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -133,10 +127,11 @@ public class LibrosController extends HttpServlet {
 			}
 
 			// Pasar atributos
-			request.setAttribute("libros", dao.getAll());
-
-			//Ir a la vista
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+//			request.setAttribute("libros", dao.getAll());
+//
+//			//Ir a la vista
+//			request.getRequestDispatcher("index.jsp").forward(request, response);
+			response.sendRedirect("libros");
 		} else {
 			request.setAttribute("mensajes", mensajes);
 
