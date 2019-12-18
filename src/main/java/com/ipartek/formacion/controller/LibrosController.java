@@ -66,13 +66,15 @@ public class LibrosController extends HttpServlet {
 		// Recoger parametros
 		String pId = request.getParameter("id");
 		String pNombre = request.getParameter("nombre");
+		String pPrecio = request.getParameter("precio");
+		String pDescuento = request.getParameter("descuento");
 
 		int id = Integer.parseInt(pId);
+		float precio = Float.parseFloat(pPrecio);
+		int descuento = Integer.parseInt(pDescuento);
 
 		// Crear libro a guardar
-		Libro libro = new Libro();
-		libro.setId(id);
-		libro.setNombre(pNombre);
+		Libro libro = new Libro(id, pNombre, precio, descuento);
 
 		// Guardar libro
 		try {
