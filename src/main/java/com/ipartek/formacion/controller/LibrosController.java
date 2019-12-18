@@ -66,7 +66,7 @@ public class LibrosController extends HttpServlet {
 		if(pPrecio != null && pPrecio.matches("^\\d+([\\.,]\\d+)?$")) {
 			pPrecio = pPrecio.replace(',', '.');
 			precio = Float.parseFloat(pPrecio);
-		} else if (pPrecio.matches("^-\\d+(\\d+)?$")) {
+		} else if (pPrecio.matches("^-\\d+([\\.,]\\d+)?$")) {
 			valido = false;
 			mensajes.add("El precio no puede ser menor que 0.");
 		} else {
@@ -110,7 +110,7 @@ public class LibrosController extends HttpServlet {
 				//Ir a la vista
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			} catch (Exception e) {
-				
+
 				// Si falla al agregar libro
 				LOG.warn("No se ha podido guardar el libro correctamente");
 				mensajes.add("No se ha podido guardar correctamente. Si el problema persiste, acuda al administrador del sistema.");

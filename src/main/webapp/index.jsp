@@ -1,11 +1,11 @@
 <%@ include file="includes/header.jsp" %>
 
-<h1> Index.jsp </h1>
-<a href="formulario.jsp"> Añadir un nuevo libro</a>
+<h1> Listado de libros </h1>
 <c:if test="${empty libros }">
 	<p>Ningún libro almacenado hasta el momento, puedes agregar uno desde <a href="formulario.jsp">aquí</a></p>
 </c:if>
 <c:if test="${not empty libros}">
+<a href="formulario.jsp"> Añadir un nuevo libro</a>
 	<table class="table table-striped table-bordered">
 		<thead>
 			<th>ID</th>
