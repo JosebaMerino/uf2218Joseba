@@ -26,6 +26,10 @@ public class LibrosController extends HttpServlet {
 
 	private final static Logger LOG = Logger.getLogger(LibrosController.class);
 
+	private final static String VIEW_LISTADO = "privado/libros/index.jsp";
+	private final static String VIEW_FORMULARIO = "privado/libros/formulario.jsp";
+
+
 	private static ArrayLibroDAO dao = ArrayLibroDAO.getInstance();
 
 
@@ -33,7 +37,7 @@ public class LibrosController extends HttpServlet {
 		LOG.trace("DOGET");
 
 		request.setAttribute("libros", dao.getAll());
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher(VIEW_LISTADO).forward(request, response);
 	}
 
 	/**
@@ -108,7 +112,7 @@ public class LibrosController extends HttpServlet {
 				request.setAttribute("alerta", new Alerta(Alerta.TIPO_SUCCESS, "Añadido correctamente", "El libro \""+ libro.getNombre() +"\" se ha añadido correctamente al DAO"));
 
 				//Ir a la vista
-				request.getRequestDispatcher("index.jsp").forward(request, response);
+				request.getRequestDispatcher(VIEW_LISTADO).forward(request, response);
 			} catch (Exception e) {
 
 				// Si falla al agregar libro
@@ -120,7 +124,7 @@ public class LibrosController extends HttpServlet {
 				request.setAttribute("precio", pPrecio);
 				request.setAttribute("descuento", pDescuento);
 
-				request.getRequestDispatcher("formulario.jsp").forward(request, response);
+				request.getRequestDispatcher(VIEW_FORMULARIO).forward(request, response);
 			}
 
 		} else {
@@ -131,7 +135,7 @@ public class LibrosController extends HttpServlet {
 			request.setAttribute("precio", pPrecio);
 			request.setAttribute("descuento", pDescuento);
 
-			request.getRequestDispatcher("formulario.jsp").forward(request, response);
+			request.getRequestDispatcher(VIEW_FORMULARIO).forward(request, response);
 		}
 
 	}

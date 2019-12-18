@@ -41,7 +41,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-	   <a class="nav-link" href="formulario.jsp"> Añadir libro</a>
+	   <a class="nav-link" href="privado/libros/formulario.jsp"> Añadir libro</a>
       </li>
       <li class="nav-item">
 	   <a class="nav-link" href="libros"> Ver libros</a>
