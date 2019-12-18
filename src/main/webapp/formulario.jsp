@@ -2,15 +2,16 @@
 
 <h1> Añadir un nuevo libro </h1>
 
-<div class="alert alert-warning alert-dismissible fade show">
-	<c:forEach items="${mensajes }" var="mensaje">
-		<p> ${mensaje }</p>
-	</c:forEach>
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    	<span aria-hidden="true">&times;</span>
-  	</button>
-</div>
-
+<c:if test="${not empty mensajes }">
+	<div class="alert alert-warning alert-dismissible fade show">
+		<c:forEach items="${mensajes }" var="mensaje">
+			<p> ${mensaje }</p>
+		</c:forEach>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    	<span aria-hidden="true">&times;</span>
+	  	</button>
+	</div>
+</c:if>
 <form action="libros" method="post">
 	  <div class="form-group">
 		    <label for="nombre">Nombre</label>
