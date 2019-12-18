@@ -32,13 +32,27 @@
 
   </head>
    <body>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">LIBROS</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+	   <a class="nav-link" href="formulario.jsp"> Añadir libro</a>
+      </li>
+      <li class="nav-item">
+	   <a class="nav-link" href="libros"> Ver libros</a>
+      </li>
+  </div>
+</nav>
    <nav>
-   <a href="libros"> Listado</a>
-   <a href="formulario.jsp"> Formulario</a>
    </nav>
     <main class="container">
    <c:if test="${not empty alerta }">
-	   <div class="alert alert-${alerta.tipo } alert-dismissible fade show">
+	   <div class="alert alert-${alerta.tipo } alert-dismissible fade show mt-2">
 	   		<h4 class="alet-header">${alerta.titulo }</h4>
 	   		<p> ${alerta.descripcion }</p>
 		   	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
