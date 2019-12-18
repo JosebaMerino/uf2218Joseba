@@ -8,5 +8,12 @@ Aqui deberia venir un dato:
 ${dato }
 </p>
 
+<p>
+ID: ${id }
+</p>
+<p>
+Nombre: ${nombre }
+</p>
+
 
 <%@ include 	file="includes/footer.jsp" %>

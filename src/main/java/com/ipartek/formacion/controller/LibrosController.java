@@ -42,8 +42,19 @@ public class LibrosController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		LOG.trace("DOPOST");
+		// Recoger parametros
+		String id = request.getParameter("id");
+		String nombre = request.getParameter("nombre");
+
+		// Pasar atributos
+		request.setAttribute("id", id);
+		request.setAttribute("nombre", nombre);
+
+
+		//Ir a la vista
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+
 	}
 
 }
