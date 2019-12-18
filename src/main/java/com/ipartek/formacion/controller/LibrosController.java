@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.ipartek.formacion.model.pojo.Libro;
+
 /**
  * Servlet implementation class LibrosController
  */
@@ -34,7 +36,7 @@ public class LibrosController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		LOG.trace("DOGET");
-		request.setAttribute("dato", "Soy un dato");
+		request.setAttribute("libro", new Libro());
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
