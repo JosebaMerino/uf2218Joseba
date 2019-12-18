@@ -31,7 +31,11 @@
 			${libro.nombre }
 		</td>
 		<td>
-			${libro.precio }
+			<!--
+
+			 ${libro.precio }
+			 -->
+			 <fmt:formatNumber type="currency" maxFractionDigits="2" value="${libro.precio }" />
 		</td>
 		<td>
 			${libro.descuento}
