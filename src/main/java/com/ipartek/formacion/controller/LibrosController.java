@@ -34,6 +34,8 @@ public class LibrosController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		LOG.trace("DOGET");
+		request.setAttribute("dato", "Soy un dato");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	/**
