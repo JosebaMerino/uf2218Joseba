@@ -4,12 +4,16 @@
 
 <a href="libros"> Cargar un texto</a>
 <p>
-Aqui deberia venir un libro:
+Aqui deberian venir uvarios libros: <br />
 
-${libro.id }
-${libro.nombre }
-${libro.precio }
-${libro.descuento }
+<c:forEach items="${libros }" var="libro">
+------------------------------- <br />
+${libro.id } <br />
+${libro.nombre } <br />
+${libro.precio } <br />
+${libro.descuento } <br />
+------------------------------- <br />
+</c:forEach>
 </p>
 
 <p>
