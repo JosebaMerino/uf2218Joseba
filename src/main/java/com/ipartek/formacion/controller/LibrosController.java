@@ -110,8 +110,8 @@ public class LibrosController extends HttpServlet {
 				//Ir a la vista
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			} catch (Exception e) {
+				
 				// Si falla al agregar libro
-
 				LOG.warn("No se ha podido guardar el libro correctamente");
 				mensajes.add("No se ha podido guardar correctamente. Si el problema persiste, acuda al administrador del sistema.");
 				request.setAttribute("mensajes", mensajes);
