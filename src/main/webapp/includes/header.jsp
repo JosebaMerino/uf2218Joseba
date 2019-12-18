@@ -30,7 +30,7 @@
   </head>
    <body>
    <nav>
-   <a href="index.jsp"> Listado</a>
+   <a href="libros"> Listado</a>
    <a href="formulario.jsp"> Formulario</a>
    </nav>
     <main class="container">

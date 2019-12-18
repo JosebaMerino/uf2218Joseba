@@ -80,9 +80,10 @@ public class LibrosController extends HttpServlet {
 		//// Validar precio
 		float precio = 0.0f;
 
-		if(pPrecio != null && pPrecio.matches("^\\d+(\\.\\d\\d?)?$")) {
+		if(pPrecio != null && pPrecio.matches("^\\d+([\\.,]\\d+)?$")) {
+			pPrecio = pPrecio.replace(',', '.');
 			precio = Float.parseFloat(pPrecio);
-		} else if (pPrecio.matches("^-\\d+(\\.\\d\\d?)?$")) {
+		} else if (pPrecio.matches("^-\\d+(\\d+)?$")) {
 			valido = false;
 			mensajes.add("El precio no puede ser menor que 0.");
 		} else {
@@ -107,9 +108,6 @@ public class LibrosController extends HttpServlet {
 			valido = false;
 			mensajes.add("El descuento no es un numero");
 		}
-
-
-
 
 		if(valido == true) {
 			// Crear libro a guardar
