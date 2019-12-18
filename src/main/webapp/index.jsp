@@ -4,8 +4,12 @@
 
 <a href="libros"> Cargar un texto</a>
 <p>
-Aqui deberia venir un dato:
-${dato }
+Aqui deberia venir un libro:
+
+${libro.id }
+${libro.nombre }
+${libro.precio }
+${libro.descuento }
 </p>
 
 <p>
