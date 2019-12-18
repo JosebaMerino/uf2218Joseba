@@ -5,7 +5,7 @@
 <a href="libros"> Cargar un texto</a>
 
 <c:if test="${empty libros }">
-	<p>Ningún libro almacenado hasta el momento, puedes agragar uno desde <a href="formulario.jsp">aquí</a></p>
+	<p>Ningún libro almacenado hasta el momento, puedes agregar uno desde <a href="formulario.jsp">aquí</a></p>
 </c:if>
 <c:if test="${not empty libros}">
 	<table class="table table-striped table-bordered">
