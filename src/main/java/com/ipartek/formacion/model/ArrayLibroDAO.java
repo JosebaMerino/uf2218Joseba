@@ -5,23 +5,23 @@ import java.util.List;
 
 import com.ipartek.formacion.model.pojo.Libro;
 
-public class LibroDAO implements IDAO<Libro> {
+public class ArrayLibroDAO implements IDAO<Libro> {
 
-	private static LibroDAO INSTANCE;
+	private static ArrayLibroDAO INSTANCE;
 	private ArrayList<Libro> registros;
 	private int indice = 1;
 
-	private LibroDAO() {
+	private ArrayLibroDAO() {
 		super();
 		registros = new ArrayList<Libro>();
 
 	}
 
-	public static synchronized LibroDAO getInstance() {
+	public static synchronized ArrayLibroDAO getInstance() {
 		// Aqui es donde se comprueba si existe la instancia.
 		// Si existe la devuelve y sino la crea. Pero solo habra una instancia de esa clase.
 		if(INSTANCE == null) {
-			INSTANCE = new LibroDAO();
+			INSTANCE = new ArrayLibroDAO();
 		}
 
 		return INSTANCE;
