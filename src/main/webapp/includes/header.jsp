@@ -39,13 +39,17 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-	   <a class="nav-link" href="privado/libros/formulario.jsp"> Añadir libro</a>
-      </li>
-      <li class="nav-item">
-	   <a class="nav-link" href="libros"> Ver libros</a>
-      </li>
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item">
+		   <a class="nav-link" href="privado/libros/formulario.jsp"> Añadir libro</a>
+	      </li>
+	      <li class="nav-item">
+		   <a class="nav-link" href="libros"> Ver libros</a>
+	      </li>
+	      <li class="nav-item">
+		   <a class="nav-link" href="login.jsp"> Login </a>
+	      </li>
+	    </ul>
   </div>
 </nav>
    <nav>
