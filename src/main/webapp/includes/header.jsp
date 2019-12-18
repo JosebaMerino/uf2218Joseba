@@ -28,5 +28,9 @@
    <fmt:setLocale value="es_ES"/>
 
   </head>
-    <body>
+   <body>
+   <nav>
+   <a href="index.jsp"> Listado</a>
+   <a href="formulario.jsp"> Formulario</a>
+   </nav>
     <main class="container">
