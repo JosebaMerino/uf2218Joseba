@@ -29,6 +29,9 @@
     display: block;
 }
 
+.flex-container {
+	display: flex;
+}
 
 </style>
 
@@ -42,13 +45,15 @@
 			<img class="portada" src="${libro.imagen }" alt="" />
 			<hr />
 			<div>
-			<p class="nombre"> ${libro.nombre }</p>
-			<i class="far fa-heart"></i>
+			<div class="flex-container">
+				<p class="nombre"> ${libro.nombre }</p>
+				<i class="far fa-heart"></i>
+			</div>
 			<p class="autor">${libro.autor }</p>
 			</div>
 			<div class="precios">
-				<span class="precio-descuento"> ${libro.calcularPrecioDescuento() }</span>
-				<span class="precio-antiguo"> ${libro.precio }</span>
+				<span class="precio-descuento"><fmt:formatNumber type="currency" maxFractionDigits="2" value="${libro.calcularPrecioDescuento()}" /></span>
+				<span class="precio-antiguo"><fmt:formatNumber type="currency" maxFractionDigits="2" value="${libro.precio }" /></span>
 				<span class="descuento"> -${libro.descuento }%</span>
 			</div>
 		</div>

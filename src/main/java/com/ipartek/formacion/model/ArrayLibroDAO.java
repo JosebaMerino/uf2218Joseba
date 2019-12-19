@@ -15,6 +15,10 @@ public class ArrayLibroDAO implements IDAO<Libro> {
 		super();
 		registros = new ArrayList<Libro>();
 
+		registros.add(new Libro(indice++, "El libro que necesitas para aprobar este examen", 1.0f));
+		registros.add(new Libro(indice++, "El libro que necesitas para aprobar este examen, bueno quizas necesites otro pero este tampoco esta nada mal la verdad", 2.0f));
+		registros.add(new Libro(indice++, "Este es mas nuevo que el anterior", 9.0f));
+
 	}
 
 	public static synchronized ArrayLibroDAO getInstance() {
