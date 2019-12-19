@@ -32,7 +32,7 @@
 
 <div class="row">
 	<% for(int i = 0; i < 3; i++){ %>
-	<div class="col-4 libro">
+	<div class="col-12 col-md-4 libro mb-3">
 		<img src="https://www.libreriacanaima.com/imagenes/9788491/978849107941.JPG" alt="" />
 		<hr />
 		<div>
