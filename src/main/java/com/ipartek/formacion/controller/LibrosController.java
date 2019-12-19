@@ -21,123 +21,267 @@ import com.ipartek.formacion.model.pojo.Libro;
  */
 @WebServlet("/libros")
 public class LibrosController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 
-	private final static Logger LOG = Logger.getLogger(LibrosController.class);
-
-	private final static String VIEW_LISTADO = "privado/libros/index.jsp";
-	private final static String VIEW_FORMULARIO = "privado/libros/formulario.jsp";
+    private final static Logger LOG = Logger.getLogger(LibrosController.class);
 
 
-	private static ArrayLibroDAO dao = ArrayLibroDAO.getInstance();
+    public final static String ACCION_LISTAR = "listar";
+    public final static String ACCION_AGREGAR = "agregar";
+    public final static String ACCION_ELIMINAR = "eliminar";
+
+    private final static String VIEW_LISTADO = "privado/libros/index.jsp";
+    private final static String VIEW_FORMULARIO = "privado/libros/formulario.jsp";
+
+    private String vista;
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LOG.trace("DOGET");
+    private static ArrayLibroDAO dao = ArrayLibroDAO.getInstance();
 
-		request.setAttribute("libros", dao.getAll());
-		request.getRequestDispatcher(VIEW_LISTADO).forward(request, response);
-	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LOG.trace("DOPOST");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        LOG.trace("DOGET");
 
-		// Declara e inicializa el ArrayList que contendrá todos los mensajes de error.
-		ArrayList<String> mensajes = new ArrayList<String>();
-		boolean valido = true;
+//		request.setAttribute("libros", dao.getAll());
+//		request.getRequestDispatcher(VIEW_LISTADO).forward(request, response);
 
-		// Recoger parametros
-		String pNombre = request.getParameter("nombre");
-		String pPrecio = request.getParameter("precio");
-		String pDescuento = request.getParameter("descuento");
+        doAction(request, response);
+    }
 
-		// Validar parametros
+    private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String accion = request.getParameter("accion");
 
-		//// Validar nombre
-		if (pNombre == null || pNombre.length() < 2 || pNombre.length() > 100) {
-			valido = false;
-			mensajes.add("El nombre debe tener de 2 a 100 caracteres");
+        switch (accion) {
+        case ACCION_LISTAR:
+            request.setAttribute("libros", dao.getAll());
+            vista = VIEW_LISTADO;
+            break;
+        case ACCION_AGREGAR:
+            agregar(request, response);
+            break;
+        case ACCION_ELIMINAR:
 
-		}
+            break;
 
-		//// Validar precio
-		float precio = 0.0f;
+        default:
+            break;
+        }
 
-		if(pPrecio != null && pPrecio.matches("^\\d+([\\.,]\\d+)?$")) {
-			pPrecio = pPrecio.replace(',', '.');
-			precio = Float.parseFloat(pPrecio);
-		} else if (pPrecio.matches("^-\\d+([\\.,]\\d+)?$")) {
-			valido = false;
-			mensajes.add("El precio no puede ser menor que 0.");
-		} else {
-			valido = false;
-			mensajes.add("El precio no es un numero valido, debe ser un número decimal mayor que 0 y con un maximo de 2 decimales.");
-		}
+        request.getRequestDispatcher(vista).forward(request, response);
 
-		//// Validar descuento
-		int descuento = 0;
+    }
 
-		if(pDescuento != null && pDescuento.matches("^\\d+$")) {
-			descuento = Integer.parseInt(pDescuento);
-			if(descuento < 0 || descuento > 100) {
-				valido = false;
-				mensajes.add("El descuento debe ser mayor o igual a 0 y menor o igual a 100.");
-			}
-		} else if(pDescuento != null && pDescuento.matches("^-\\d+$")) {
-			valido = false;
-			mensajes.add("El descuento no puede ser un número negativo");
-		}
-		else {
-			valido = false;
-			mensajes.add("El descuento no es un numero");
-		}
+    private void agregar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        LOG.trace("DOPOST");
 
-		if(valido == true) {
-			// Crear libro a guardar
-			Libro libro = new Libro();
+        // Declara e inicializa el ArrayList que contendrá todos los mensajes de error.
+        ArrayList<String> mensajes = new ArrayList<String>();
+        boolean valido = true;
 
-			libro.setNombre(pNombre);
-			libro.setPrecio(precio);
-			libro.setDescuento(descuento);
+        // Recoger parametros
+        String pId = request.getParameter("id");
+        String pNombre = request.getParameter("nombre");
+        String pAutor = request.getParameter("autor");
+        String pImagen = request.getParameter("imagen");
+        String pPrecio = request.getParameter("precio");
+        String pDescuento = request.getParameter("descuento");
 
-			// Guardar libro
-			try {
-				dao.create(libro);
-				// Pasar atributos
-				request.setAttribute("libros", dao.getAll());
-				request.setAttribute("alerta", new Alerta(Alerta.TIPO_INFORMATIVO, "Añadido correctamente", "El libro \""+ libro.getNombre() +"\" se ha añadido correctamente al DAO"));
+        // Validar parametros
 
-				//Ir a la vista
-				request.getRequestDispatcher(VIEW_LISTADO).forward(request, response);
-			} catch (Exception e) {
+        int id = 0;
 
-				// Si falla al agregar libro
-				LOG.warn("No se ha podido guardar el libro correctamente");
-				mensajes.add("No se ha podido guardar correctamente. Si el problema persiste, acuda al administrador del sistema.");
-				request.setAttribute("mensajes", mensajes);
+        //// Validar id
+        if(pId != null || pId.matches("^\\d+$")) {
+        	id = Integer.parseInt(pId);
+        }
 
-				request.setAttribute("nombre", pNombre);
-				request.setAttribute("precio", pPrecio);
-				request.setAttribute("descuento", pDescuento);
+        //// Validar nombre
+        if (pNombre == null || pNombre.length() < 2 || pNombre.length() > 100) {
+            valido = false;
+            mensajes.add("El nombre debe tener de 2 a 100 caracteres");
 
-				request.getRequestDispatcher(VIEW_FORMULARIO).forward(request, response);
-			}
+        }
 
-		} else {
-			// Como no ha pasado la validación vuelve al formulario y no pierde el contenido del formulario.
-			request.setAttribute("mensajes", mensajes);
+        //// Validar precio
+        float precio = 0.0f;
 
-			request.setAttribute("nombre", pNombre);
-			request.setAttribute("precio", pPrecio);
-			request.setAttribute("descuento", pDescuento);
+        if(pPrecio != null && pPrecio.matches("^\\d+([\\.,]\\d+)?$")) {
+            pPrecio = pPrecio.replace(',', '.');
+            precio = Float.parseFloat(pPrecio);
+        } else if (pPrecio.matches("^-\\d+([\\.,]\\d+)?$")) {
+            valido = false;
+            mensajes.add("El precio no puede ser menor que 0.");
+        } else {
+            valido = false;
+            mensajes.add("El precio no es un numero valido, debe ser un número decimal mayor que 0 y con un maximo de 2 decimales.");
+        }
 
-			request.getRequestDispatcher(VIEW_FORMULARIO).forward(request, response);
-		}
+        //// Validar descuento
+        int descuento = 0;
 
-	}
+        if(pDescuento != null && pDescuento.matches("^\\d+$")) {
+            descuento = Integer.parseInt(pDescuento);
+            if(descuento < 0 || descuento > 100) {
+                valido = false;
+                mensajes.add("El descuento debe ser mayor o igual a 0 y menor o igual a 100.");
+            }
+        } else if(pDescuento != null && pDescuento.matches("^-\\d+$")) {
+            valido = false;
+            mensajes.add("El descuento no puede ser un número negativo");
+        }
+        else {
+            valido = false;
+            mensajes.add("El descuento no es un numero");
+        }
+
+        if(valido == true) {
+            // Crear libro a guardar
+            Libro libro = new Libro();
+
+            libro.setId(id);
+            libro.setNombre(pNombre);
+            libro.setAutor(pAutor);
+            libro.setPrecio(precio);
+            libro.setDescuento(descuento);
+            if(pImagen !=null && !"".equals(pImagen)) {
+            	libro.setImagen(pImagen);
+            }
+
+
+            // Guardar libro
+            try {
+                dao.create(libro);
+                // Pasar atributos
+                request.setAttribute("libros", dao.getAll());
+                request.setAttribute("alerta", new Alerta(Alerta.TIPO_INFORMATIVO, "Añadido correctamente", "El libro \""+ libro.getNombre() +"\" se ha añadido correctamente al DAO"));
+
+                //Ir a la vista
+                request.getRequestDispatcher(VIEW_LISTADO).forward(request, response);
+            } catch (Exception e) {
+
+                // Si falla al agregar libro
+                LOG.warn("No se ha podido guardar el libro correctamente");
+                mensajes.add("No se ha podido guardar correctamente. Si el problema persiste, acuda al administrador del sistema.");
+                request.setAttribute("mensajes", mensajes);
+
+                request.setAttribute("nombre", pNombre);
+                request.setAttribute("precio", pPrecio);
+                request.setAttribute("descuento", pDescuento);
+
+                request.getRequestDispatcher(VIEW_FORMULARIO).forward(request, response);
+            }
+
+        } else {
+            // Como no ha pasado la validación vuelve al formulario y no pierde el contenido del formulario.
+            request.setAttribute("mensajes", mensajes);
+
+            request.setAttribute("nombre", pNombre);
+            request.setAttribute("precio", pPrecio);
+            request.setAttribute("descuento", pDescuento);
+
+            request.getRequestDispatcher(VIEW_FORMULARIO).forward(request, response);
+        }
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        LOG.trace("DOPOST");
+
+        // Declara e inicializa el ArrayList que contendrá todos los mensajes de error.
+        ArrayList<String> mensajes = new ArrayList<String>();
+        boolean valido = true;
+
+        // Recoger parametros
+        String pNombre = request.getParameter("nombre");
+        String pPrecio = request.getParameter("precio");
+        String pDescuento = request.getParameter("descuento");
+
+        // Validar parametros
+
+        //// Validar nombre
+        if (pNombre == null || pNombre.length() < 2 || pNombre.length() > 100) {
+            valido = false;
+            mensajes.add("El nombre debe tener de 2 a 100 caracteres");
+
+        }
+
+        //// Validar precio
+        float precio = 0.0f;
+
+        if(pPrecio != null && pPrecio.matches("^\\d+([\\.,]\\d+)?$")) {
+            pPrecio = pPrecio.replace(',', '.');
+            precio = Float.parseFloat(pPrecio);
+        } else if (pPrecio.matches("^-\\d+([\\.,]\\d+)?$")) {
+            valido = false;
+            mensajes.add("El precio no puede ser menor que 0.");
+        } else {
+            valido = false;
+            mensajes.add("El precio no es un numero valido, debe ser un número decimal mayor que 0 y con un maximo de 2 decimales.");
+        }
+
+        //// Validar descuento
+        int descuento = 0;
+
+        if(pDescuento != null && pDescuento.matches("^\\d+$")) {
+            descuento = Integer.parseInt(pDescuento);
+            if(descuento < 0 || descuento > 100) {
+                valido = false;
+                mensajes.add("El descuento debe ser mayor o igual a 0 y menor o igual a 100.");
+            }
+        } else if(pDescuento != null && pDescuento.matches("^-\\d+$")) {
+            valido = false;
+            mensajes.add("El descuento no puede ser un número negativo");
+        }
+        else {
+            valido = false;
+            mensajes.add("El descuento no es un numero");
+        }
+
+        if(valido == true) {
+            // Crear libro a guardar
+            Libro libro = new Libro();
+
+            libro.setNombre(pNombre);
+            libro.setPrecio(precio);
+            libro.setDescuento(descuento);
+
+            // Guardar libro
+            try {
+                dao.create(libro);
+                // Pasar atributos
+                request.setAttribute("libros", dao.getAll());
+                request.setAttribute("alerta", new Alerta(Alerta.TIPO_INFORMATIVO, "Añadido correctamente", "El libro \""+ libro.getNombre() +"\" se ha añadido correctamente al DAO"));
+
+                //Ir a la vista
+                request.getRequestDispatcher(VIEW_LISTADO).forward(request, response);
+            } catch (Exception e) {
+
+                // Si falla al agregar libro
+                LOG.warn("No se ha podido guardar el libro correctamente");
+                mensajes.add("No se ha podido guardar correctamente. Si el problema persiste, acuda al administrador del sistema.");
+                request.setAttribute("mensajes", mensajes);
+
+                request.setAttribute("nombre", pNombre);
+                request.setAttribute("precio", pPrecio);
+                request.setAttribute("descuento", pDescuento);
+
+                request.getRequestDispatcher(VIEW_FORMULARIO).forward(request, response);
+            }
+
+        } else {
+            // Como no ha pasado la validación vuelve al formulario y no pierde el contenido del formulario.
+            request.setAttribute("mensajes", mensajes);
+
+            request.setAttribute("nombre", pNombre);
+            request.setAttribute("precio", pPrecio);
+            request.setAttribute("descuento", pDescuento);
+
+            request.getRequestDispatcher(VIEW_FORMULARIO).forward(request, response);
+        }
+
+    }
 
 }

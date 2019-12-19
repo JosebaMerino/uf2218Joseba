@@ -1,3 +1,4 @@
+<%@page import="com.ipartek.formacion.controller.LibrosController"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -37,7 +38,7 @@
   </head>
    <body>
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">LIBROS</a>
+  <a class="navbar-brand" href="inicio">LIBROS</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -49,7 +50,7 @@
 		   <a class="nav-link" href="privado/libros/formulario.jsp"> Añadir libro</a>
 	      </li>
 	      <li class="nav-item">
-		   <a class="nav-link" href="libros"> Ver libros</a>
+		   <a class="nav-link" href="libros?accion=listar"> Ver libros</a>
 	      </li>
 	      <li class="nav-item">
 		  	<a class="nav-link" href="logout"> Logout </a>

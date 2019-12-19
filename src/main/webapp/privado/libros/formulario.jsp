@@ -15,7 +15,7 @@
 	  	</button>
 	</div>
 </c:if>
-<form action="libros" method="post">
+<form action="libros?accion=agregar" method="post">
 	  <div class="form-group">
 		    <label for="id">Id</label>
 		    	<input type="text"

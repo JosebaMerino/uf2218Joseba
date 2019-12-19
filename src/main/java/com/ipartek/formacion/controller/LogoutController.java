@@ -44,6 +44,6 @@ public class LogoutController extends HttpServlet {
 		session.removeAttribute("usuarioLogeado");
 		session.invalidate();
 
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		response.sendRedirect("inicio");
 	}
 }

@@ -26,28 +26,33 @@
 	font-weight: bold;
 }
 
+.libro .portada {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 
 </style>
 
 
 <div class="row">
-	<% for(int i = 0; i < 3; i++){ %>
-	<div class="col-12 col-md-4 libro mb-3">
-		<img src="https://www.libreriacanaima.com/imagenes/9788491/978849107941.JPG" alt="" />
-		<hr />
-		<div>
-		<p class="nombre"> Los futbolisimos un musical que llega unos cuantos años despues de lo que deberia llegar pero mira, por lo menos ha llegado</p>
-		<i class="far fa-heart"></i>
-		<p class="autor">ANONIMO</p>
+	<c:forEach items="${libros }" var="libro">
+		<div class="col-12 col-md-4 libro mb-3">
+			<img class="portada" src="${libro.imagen }" alt="" />
+			<hr />
+			<div>
+			<p class="nombre"> ${libro.nombre }</p>
+			<i class="far fa-heart"></i>
+			<p class="autor">${libro.autor }</p>
+			</div>
+			<div class="precios">
+				<span class="precio-descuento"> 11.99</span>
+				<span class="precio-antiguo"> ${libro.precio }</span>
+				<span class="descuento"> -${libro.descuento }%</span>
+			</div>
 		</div>
-		<div class="precios">
-			<span class="precio-descuento"> 11.99</span>
-			<span class="precio-antiguo"> 22.11</span>
-			<span class="descuento"> -5%</span>
-		</div>
-
-	</div>
-<% } %>
+	</c:forEach>
 </div>
 
 ${usuarioLogeado }
