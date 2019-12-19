@@ -17,6 +17,15 @@
 </c:if>
 <form action="libros" method="post">
 	  <div class="form-group">
+		    <label for="id">Id</label>
+		    	<input type="text"
+					name="id" id="id"
+					value="${id }"
+					class="form-control"
+					readonly
+				/>
+	  </div>
+	  <div class="form-group">
 		    <label for="nombre">Nombre</label>
 		    	<input type="text"
 					name="nombre" id="nombre"
@@ -25,6 +34,26 @@
 					placeholder="Los juegos del hambre"
 				/>
 		    <small id="nombreHelp" class="form-text text-muted">Debe tener de 2 a 100 caracteres</small>
+	  </div>
+	  <div class="form-group">
+		    <label for="autor">Autor</label>
+		    	<input type="text"
+					name="autor" id="autor"
+					value="${autor }"
+					class="form-control"
+					placeholder="Suzanne Collins"
+				/>
+		    <small id="autorHelp" class="form-text text-muted">Si no se pone un autor, será anonimo</small>
+	  </div>
+	  <div class="form-group">
+		    <label for="imagen">Imagen</label>
+		    	<input type="text"
+					name="imagen" id="imagen"
+					value="${imagen }"
+					class="form-control"
+					placeholder="https://www.okchicas.com/wp-content/uploads/2019/06/los-juegos-del-hambre-precuela.jpg"
+				/>
+		    <small id="imagenHelp" class="form-text text-muted">Debe tener de 2 a 100 caracteres</small>
 	  </div>
 	  <div class="form-group">
 		    <label for="precio">Precio</label>
