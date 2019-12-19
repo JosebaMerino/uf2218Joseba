@@ -1,8 +1,9 @@
 package com.ipartek.formacion.controller;
 
 public class Alerta {
-	public static final String TIPO_SUCCESS = "success";
-	public static final String TIPO_WARNING = "warning";
+	public static final String TIPO_ALERTA = "warning";
+	public static final String TIPO_ERROR = "danger";
+	public static final String TIPO_INFORMATIVO = "info";
 
 	private String tipo;
 	private String titulo;

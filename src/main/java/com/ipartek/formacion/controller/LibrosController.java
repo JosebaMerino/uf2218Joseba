@@ -109,7 +109,7 @@ public class LibrosController extends HttpServlet {
 				dao.create(libro);
 				// Pasar atributos
 				request.setAttribute("libros", dao.getAll());
-				request.setAttribute("alerta", new Alerta(Alerta.TIPO_SUCCESS, "Añadido correctamente", "El libro \""+ libro.getNombre() +"\" se ha añadido correctamente al DAO"));
+				request.setAttribute("alerta", new Alerta(Alerta.TIPO_INFORMATIVO, "Añadido correctamente", "El libro \""+ libro.getNombre() +"\" se ha añadido correctamente al DAO"));
 
 				//Ir a la vista
 				request.getRequestDispatcher(VIEW_LISTADO).forward(request, response);
