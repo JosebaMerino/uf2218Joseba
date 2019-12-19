@@ -15,16 +15,16 @@
 	  	</button>
 	</div>
 </c:if>
-<form action="libros?accion=agregar" method="post">
-	  <div class="form-group">
-		    <label for="id">Id</label>
-		    	<input type="text"
-					name="id" id="id"
-					value="${id }"
-					class="form-control"
-					readonly
-				/>
-	  </div>
+<form action="libros" method="post">
+
+	   	<input type="hidden"
+			name="accion"
+			value="agregar"
+			readonly/>
+	   	<input type="hidden"
+			name="id" id="id"
+			value="${id }"
+			readonly/>
 	  <div class="form-group">
 		    <label for="nombre">Nombre</label>
 		    	<input type="text"
@@ -79,6 +79,9 @@
 
 	<button type="submit" class="btn btn-primary btn-block"> Enviar</button>
 </form>
+<c:if test="${not empty id }">
+	<a href="libros?accion=eliminar&id=${id }" class="btn btn-block btn-primary mt-2"> Eliminar </a>
+</c:if>
 
 
 <%@ include file="/includes/footer.jsp" %>

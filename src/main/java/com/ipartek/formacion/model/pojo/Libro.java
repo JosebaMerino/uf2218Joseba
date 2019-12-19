@@ -63,7 +63,6 @@ public class Libro {
 		this.descuento = descuento;
 	}
 
-
 	public String getAutor() {
 		return autor;
 	}
@@ -78,6 +77,14 @@ public class Libro {
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
+	}
+
+	public float calcularPrecioDescuento() {
+		float resul = 0.0f;
+
+		resul = precio * ((100f - descuento) / 100f);
+
+		return resul;
 	}
 
 

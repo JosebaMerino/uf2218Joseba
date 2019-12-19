@@ -47,7 +47,7 @@
 			<p class="autor">${libro.autor }</p>
 			</div>
 			<div class="precios">
-				<span class="precio-descuento"> 11.99</span>
+				<span class="precio-descuento"> ${libro.calcularPrecioDescuento() }</span>
 				<span class="precio-antiguo"> ${libro.precio }</span>
 				<span class="descuento"> -${libro.descuento }%</span>
 			</div>

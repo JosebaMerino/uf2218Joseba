@@ -2,10 +2,11 @@
 
 <h1> Listado de libros </h1>
 <c:if test="${empty libros }">
-	<p>Ningún libro almacenado hasta el momento, puedes agregar uno desde <a href="formulario.jsp">aquí</a></p>
+	<p>Ningún libro almacenado hasta el momento, puedes agregar uno desde <a href="privado/libros/formulario.jsp">aquí</a></p>
 </c:if>
+
 <c:if test="${not empty libros}">
-<a href="formulario.jsp"> Añadir un nuevo libro</a>
+<a href="privado/libros/formulario.jsp"> Añadir un nuevo libro</a>
 	<table class="table table-striped table-bordered">
 		<thead>
 			<th>ID</th>
@@ -30,6 +31,7 @@
 		</td>
 		<td>
 			 <fmt:formatNumber type="currency" maxFractionDigits="2" value="${libro.precio }" />
+			 <a href="libros?accion=formulario&id=${libro.id }"> Ver</a>
 		</td>
 		<td>
 			${libro.descuento}
