@@ -58,7 +58,7 @@
 </nav>
    <nav>
    </nav>
-    <main class="container">
+    <main class="container" style="margin-bottom: 56px">
    <c:if test="${not empty alerta }">
 	   <div class="alert alert-${alerta.tipo } alert-dismissible fade show mt-2">
 	   		<h4 class="alet-header">${alerta.titulo }</h4>
