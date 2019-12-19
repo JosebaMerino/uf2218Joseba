@@ -16,7 +16,7 @@ public class ArrayLibroDAO implements IDAO<Libro> {
 		registros = new ArrayList<Libro>();
 
 		registros.add(new Libro(indice++, "El libro que necesitas para aprobar este examen", 1.0f));
-		registros.add(new Libro(indice++, "El libro que necesitas para aprobar este examen, bueno quizas necesites otro pero este tampoco esta nada mal la verdad", 2.0f));
+		registros.add(new Libro(indice++, "Un nuevo libro con una tematica innovadora respecto a los aspectos esenciales de la vida", "Algun tio", "https://laboratoriodeperiodismo.org/wp-content/uploads/2019/07/mejores-libros-periodismo-1068x728.jpg", 100, 20 ));
 		registros.add(new Libro(indice++, "Este es mas nuevo que el anterior", 9.0f));
 
 	}

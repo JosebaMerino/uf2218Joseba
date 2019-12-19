@@ -1,0 +1,36 @@
+
+.libro .precios .precio-antiguo {
+  color: grey;
+  text-decoration:line-through;
+  margin-left: 5px;
+}
+
+.libro .precios .precio-descuento {
+  color: #FF5E67;
+  font-size: 125%;
+}
+
+.libro .precios .descuento {
+  color: white;
+  background-color: #FF5E67;
+  padding: 3px;
+  margin-left: 15px
+}
+
+.libro .nombre {
+  color: grey;
+}
+.libro .autor {
+  font-weight: bold;
+}
+
+.libro .portada {
+width: 100%;
+height: 20rem;
+display: block;
+object-fit: scale-down;
+}
+
+.flex-container {
+  display: flex;
+}
