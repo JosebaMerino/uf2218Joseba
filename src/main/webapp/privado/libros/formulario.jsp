@@ -15,7 +15,7 @@
 	  	</button>
 	</div>
 </c:if>
-<form action="libros" method="post">
+<form action="privado/libros" method="post">
 
 	   	<input type="hidden"
 			name="accion"
@@ -80,8 +80,7 @@
 	<button type="submit" class="btn btn-primary btn-block"> Enviar</button>
 </form>
 <c:if test="${not empty id }">
-	<a href="libros?accion=eliminar&id=${id }" class="btn btn-block btn-primary mt-2"> Eliminar </a>
+	<a href="privado/libros?accion=eliminar&id=${id }" class="btn btn-block btn-primary mt-2"> Eliminar </a>
 </c:if>
-
 
 <%@ include file="/includes/footer.jsp" %>

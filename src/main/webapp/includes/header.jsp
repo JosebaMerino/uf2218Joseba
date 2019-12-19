@@ -23,6 +23,7 @@
 
     <title>UF-2218 - Joseba</title>
 
+
    <!-- Bootstrap core CSS -->
    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
@@ -50,7 +51,7 @@
 		   <a class="nav-link" href="privado/libros/formulario.jsp"> Añadir libro</a>
 	      </li>
 	      <li class="nav-item">
-		   <a class="nav-link" href="libros?accion=listar"> Ver libros</a>
+		   <a class="nav-link" href="privado/libros?accion=listar"> Ver libros</a>
 	      </li>
 	      <li class="nav-item">
 		  	<a class="nav-link" href="logout"> Logout </a>
@@ -64,7 +65,7 @@
 	    </ul>
   </div>
 </nav>
-    <main class="container" style="margin-bottom: 56px">
+    <main class="container" style="margin-bottom: 60px">
    <c:if test="${not empty alerta }">
 	   <div class="alert alert-${alerta.tipo } alert-dismissible fade show mt-2">
 	   		<h4 class="alet-header">${alerta.titulo }</h4>

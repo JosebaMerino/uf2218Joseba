@@ -19,7 +19,7 @@ import com.ipartek.formacion.model.pojo.Libro;
 /**
  * Servlet implementation class LibrosController
  */
-@WebServlet("/libros")
+@WebServlet("/privado/libros")
 public class LibrosController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -35,6 +35,8 @@ public class LibrosController extends HttpServlet {
 
     private final static String VIEW_LISTADO = "privado/libros/index.jsp";
     private final static String VIEW_FORMULARIO = "privado/libros/formulario.jsp";
+
+    private static String BASE;
 
     private String vista;
 
@@ -53,6 +55,8 @@ public class LibrosController extends HttpServlet {
 
     private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String accion = request.getParameter("accion");
+
+        BASE = "/";
 
 
         switch (accion) {
@@ -75,7 +79,7 @@ public class LibrosController extends HttpServlet {
         }
 
         request.setAttribute("libros", dao.getAll());
-        request.getRequestDispatcher(vista).forward(request, response);
+        request.getRequestDispatcher(BASE + vista).forward(request, response);
 
     }
 
@@ -209,7 +213,8 @@ public class LibrosController extends HttpServlet {
                 request.setAttribute("libros", dao.getAll());
 
                 //Ir a la vista
-                request.getRequestDispatcher(VIEW_LISTADO).forward(request, response);
+//                request.getRequestDispatcher(VIEW_LISTADO).forward(request, response);
+                vista = VIEW_LISTADO;
             } catch (Exception e) {
 
                 // Si falla al agregar libro
@@ -221,7 +226,8 @@ public class LibrosController extends HttpServlet {
                 request.setAttribute("precio", pPrecio);
                 request.setAttribute("descuento", pDescuento);
 
-                request.getRequestDispatcher(VIEW_FORMULARIO).forward(request, response);
+//                request.getRequestDispatcher(VIEW_FORMULARIO).forward(request, response);
+                vista = VIEW_FORMULARIO;
             }
 
         } else {
@@ -232,7 +238,8 @@ public class LibrosController extends HttpServlet {
             request.setAttribute("precio", pPrecio);
             request.setAttribute("descuento", pDescuento);
 
-            request.getRequestDispatcher(VIEW_FORMULARIO).forward(request, response);
+//            request.getRequestDispatcher(VIEW_FORMULARIO).forward(request, response);
+            vista = VIEW_FORMULARIO;
         }
     }
 

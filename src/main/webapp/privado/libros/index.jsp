@@ -31,7 +31,7 @@
 		</td>
 		<td>
 			 <fmt:formatNumber type="currency" maxFractionDigits="2" value="${libro.precio }" />
-			 <a href="libros?accion=formulario&id=${libro.id }"> Ver</a>
+			 <a href="privado/libros?accion=formulario&id=${libro.id }"> Ver</a>
 		</td>
 		<td>
 			${libro.descuento}
