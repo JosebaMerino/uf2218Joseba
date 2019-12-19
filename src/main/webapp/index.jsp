@@ -1,7 +1,4 @@
 <%@ include file="/includes/header.jsp" %>
-
-<h1> Pantalla de bienvenida</h1>
-
 <style>
 .libro .precios .precio-antiguo {
 	color: grey;
@@ -37,6 +34,9 @@
 
 
 <div class="row">
+<c:if test="${empty libros }">
+	<h3> Actualente no se encuentran libros</h3>
+</c:if>
 	<c:forEach items="${libros }" var="libro">
 		<div class="col-12 col-md-4 libro mb-3">
 			<img class="portada" src="${libro.imagen }" alt="" />
@@ -54,7 +54,5 @@
 		</div>
 	</c:forEach>
 </div>
-
-${usuarioLogeado }
 
 <%@ include file="/includes/footer.jsp" %>

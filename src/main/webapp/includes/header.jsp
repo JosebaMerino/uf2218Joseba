@@ -48,6 +48,9 @@
 	    <ul class="navbar-nav mr-auto">
 	    <c:if test="${not empty usuarioLogeado }">
 	      <li class="nav-item">
+		   <a class="nav-link" href="privado/index.jsp"> Bienvenida </a>
+	      </li>
+	      <li class="nav-item">
 		   <a class="nav-link" href="privado/libros/formulario.jsp"> Añadir libro</a>
 	      </li>
 	      <li class="nav-item">

@@ -2,13 +2,14 @@
 
 <h1> Login </h1>
 
-<form action="login" method="get">
+<form action="login" method="post">
 	<div class="form-group">
 		<label for="usuario"> Usuario </label>
 		<input type="text"
 			class="form-control"
 			name="usuario" id="usuario"
 			placeholder="admin"
+			value="${usuario }"
 		/>
 	</div>
 	<div class="form-group">

@@ -2,7 +2,7 @@
 
 <%@ include file="/includes/header.jsp" %>
 
-<h1> Añadir un nuevo libro </h1>
+<h1> Formulario </h1>
 
 <c:if test="${not empty mensajes }">
 	<div class="alert alert-warning alert-dismissible fade show">
@@ -53,7 +53,7 @@
 					class="form-control"
 					placeholder="https://www.okchicas.com/wp-content/uploads/2019/06/los-juegos-del-hambre-precuela.jpg"
 				/>
-		    <small id="imagenHelp" class="form-text text-muted">Debe tener de 2 a 100 caracteres</small>
+		    <small id="imagenHelp" class="form-text text-muted">Si no se pone ninguna, se pondrá una por defecto</small>
 	  </div>
 	  <div class="form-group">
 		    <label for="precio">Precio</label>

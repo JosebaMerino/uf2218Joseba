@@ -54,10 +54,13 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		if(USUARIO.equals(usuario) && PASSWORD.equals(password)) {
-			session.setAttribute("usuarioLogeado", "Joseba");
+			session.setAttribute("usuarioLogeado", usuario);
+			request.setAttribute("alerta", new Alerta(Alerta.TIPO_INFORMATIVO, "Bienvenido", "Le damos la bienvenida " + usuario));
 			request.getRequestDispatcher(VIEW_PRINCIPAL_PRIVADO).forward(request, response);
 
 		} else {
+			request.setAttribute("alerta", new Alerta(Alerta.TIPO_ALERTA, "Usuario o contraseña incorrecto", "El usuario o la contraseña son incorrectos"));
+			request.setAttribute("usuario", usuario);
 			request.getRequestDispatcher(VIEW_LOGIN).forward(request, response);
 		}
 
