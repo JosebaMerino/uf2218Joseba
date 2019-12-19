@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String EMAIL= "admin";
-	private static final String PASSWORD = "admin";
+	private static final String USUARIO= "admin";
+	private static final String PASSWORD = "123456";
 
 	private static final String VIEW_PRINCIPAL_PRIVADO = "privado/index.jsp";
 	private static final String VIEW_LOGIN = "login.jsp";
@@ -48,12 +48,12 @@ public class LoginController extends HttpServlet {
 	}
 
 	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String email = request.getParameter("email");
+		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
 
 		HttpSession session = request.getSession();
 
-		if(EMAIL.equals(email) && PASSWORD.equals(password)) {
+		if(USUARIO.equals(usuario) && PASSWORD.equals(password)) {
 			session.setAttribute("usuarioLogeado", "Joseba");
 			request.getRequestDispatcher(VIEW_PRINCIPAL_PRIVADO).forward(request, response);
 

@@ -44,6 +44,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
+	    <c:if test="${not empty usuarioLogeado }">
 	      <li class="nav-item">
 		   <a class="nav-link" href="privado/libros/formulario.jsp"> Añadir libro</a>
 	      </li>
@@ -51,13 +52,17 @@
 		   <a class="nav-link" href="libros"> Ver libros</a>
 	      </li>
 	      <li class="nav-item">
+		  	<a class="nav-link" href="logout"> Logout </a>
+	      </li>
+	    </c:if>
+	    <c:if test="${empty usuarioLogeado }">
+	      <li class="nav-item">
 		   <a class="nav-link" href="login.jsp"> Login </a>
 	      </li>
+	    </c:if>
 	    </ul>
   </div>
 </nav>
-   <nav>
-   </nav>
     <main class="container" style="margin-bottom: 56px">
    <c:if test="${not empty alerta }">
 	   <div class="alert alert-${alerta.tipo } alert-dismissible fade show mt-2">
